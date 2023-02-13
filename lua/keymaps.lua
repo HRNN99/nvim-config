@@ -36,14 +36,23 @@ map_key('n', '<leader>n', ':bnext<cr>')
 map_key('n', '<leader>b', ':bprev<cr>')
 
 -- Java
+map_key('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
+map_key('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
+map_key('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
+map_key('n', 'gd', 'vim.lsp.buf.definition')
+map_key('n', "<leader>ca", ':lua vim.lsp.buf.code_action()<CR>')
+map_key('n', "<leader>gd", ':lua vim.lsp.buf.definition()<CR>')
+map_key('n', "<leader>gi", ':lua vim.lsp.buf.implementation()<CR>')
+map_key('n', "<leader>cf", ':lua vim.lsp.buf.formatting()<CR>')
+map_key('n', "<leader>cr", ':lua vim.lsp.buf.rename()<CR>')
+
 function P.map_java_keys(bufnr)
   map_lsp_keys()
 
   local spring_boot_run = 'mvn spring-boot:run -Dspring-boot.run.profiles=local'
   local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")<CR>'
   map_key('n', '<leader>sr', command)
-  map_key('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
-  map_key('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
+
 end
 
 return P
