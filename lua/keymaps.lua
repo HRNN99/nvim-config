@@ -15,6 +15,19 @@ local map_key = function(mode, key, result)
   )
 end
 
+-- Git functions
+function git_commit_all()
+  vim.ui.input({ prompt = 'Msg: ' }, function(input)
+    io.popen("git add . && git commit -am '" .. input .. "'")
+  end)
+end
+
+function git_commit_push_all()
+  vim.ui.input({ prompt = 'Msg: ' }, function(input)
+    io.popen("git add . && git commit -am '" .. input .. "' && git push")
+  end)
+end
+
 -- shortcuts
 map_key('n', '<leader>q', '<Cmd>q<CR>')
 map_key('n', '<leader>w', '<Cmd>w<CR>')
@@ -35,23 +48,28 @@ map_key('n', '<leader><esc>', ':nohlsearch<cr>')
 map_key('n', '<leader>n', ':bnext<cr>')
 map_key('n', '<leader>b', ':bprev<cr>')
 
+-- GIT
+map_key('n', '<leader>gc', ':lua git_commit_all()<CR>')
+map_key('n', '<leader>ga', ':lua git_commit_push_all()<CR>')
+
 -- Java
 map_key('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
 map_key('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
 map_key('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
-map_key('n', 'gd', 'vim.lsp.buf.definition')
 map_key('n', "<leader>ca", ':lua vim.lsp.buf.code_action()<CR>')
 map_key('n', "<leader>gd", ':lua vim.lsp.buf.definition()<CR>')
 map_key('n', "<leader>gi", ':lua vim.lsp.buf.implementation()<CR>')
-map_key('n', "<leader>cf", ':lua vim.lsp.buf.formatting()<CR>')
-map_key('n', "<leader>cr", ':lua vim.lsp.buf.rename()<CR>')
+map_key('n', "<C-S>f", ':lua vim.lsp.buf.formatting()<CR>')
+map_key('n', "<C-S>r", ':lua vim.lsp.buf.rename()<CR>')
+map_key('n', "<leader>cr", ':lua require"telescope.builtin".lsp_references()<CR>')
+local spring_boot_run = 'mvn spring-boot:run -Dspring-boot.run.profiles=local'
+local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")<CR>'
+map_key('n', '<leader>sr', command)
 
 function P.map_java_keys(bufnr)
   map_lsp_keys()
 
-  local spring_boot_run = 'mvn spring-boot:run -Dspring-boot.run.profiles=local'
-  local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")<CR>'
-  map_key('n', '<leader>sr', command)
+ 
 
 end
 

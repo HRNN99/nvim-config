@@ -38,6 +38,15 @@ local config = {
     }
   }
 }
+config['on_attach'] = function(client, bufnr)
+  require "lsp_signature".on_attach({
+    bind = true,
+    padding = '',
+    handler_opts = {
+      border = "rounded"
+    }
+  }, bufnr)
+end
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)

@@ -33,11 +33,14 @@ packer.startup(function(use)
   use 'airblade/vim-gitgutter' --show git modifications
   use 'preservim/nerdtree' -- file explorer
   use 'ThePrimeagen/vim-be-good' -- vim practice
+
     -- LSP java
   -- use "williamboman/mason.nvim"
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
   use 'mfussenegger/nvim-jdtls'
+  use 'ray-x/lsp_signature.nvim'
+  use 'akinsho/toggleterm.nvim'
 end
 )
 
@@ -87,3 +90,6 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   -- vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
+
+-- Terminal
+require('toggleterm').setup()

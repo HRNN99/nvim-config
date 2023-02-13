@@ -3,3 +3,5 @@ coc-settings.json
 plugged/
 plugged2/
 init.vim_backup
+undodir/
+
