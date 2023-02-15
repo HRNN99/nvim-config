@@ -63,8 +63,10 @@ map_key('n', "<C-S>f", ':lua vim.lsp.buf.formatting()<CR>')
 map_key('n', "<C-S>r", ':lua vim.lsp.buf.rename()<CR>')
 map_key('n', "<leader>cr", ':lua require"telescope.builtin".lsp_references()<CR>')
 local spring_boot_run = 'mvn spring-boot:run -Dspring-boot.run.profiles=local'
-local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")<CR>'
-map_key('n', '<leader>sr', command)
+local run= ':lua require("toggleterm").exec("' .. spring_boot_run .. '")<CR>'
+local test= ':lua require("toggleterm").exec("' .. 'mvn test' .. '")<CR>'
+map_key('n', '<leader>sr', run)
+map_key('n', '<leader>st', test)
 
 function P.map_java_keys(bufnr)
   map_lsp_keys()
