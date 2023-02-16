@@ -33,6 +33,15 @@ packer.startup(function(use)
   use 'airblade/vim-gitgutter' --show git modifications
   use 'preservim/nerdtree' -- file explorer
   use 'ThePrimeagen/vim-be-good' -- vim practice
+  use { -- CMP completion
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'L3MON4D3/LuaSnip'
+    }
+  }
 
     -- LSP java
   -- use "williamboman/mason.nvim"
@@ -93,3 +102,64 @@ end
 
 -- Terminal
 require('toggleterm').setup()
+
+-- CMP completion
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  },
+
+  sources = {
+    {name = 'path'},
+    {name = 'nvim_lsp'},
+    {name = 'buffer', keyword_lenght = 3},
+    {name = 'luasnip', keyword_lenght = 2},
+  },
+
+  window = {
+    documentation = cmp.config.window.bordered()
+  },
+  mapping = {
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true
+      }),
+      ['<Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+      ['<S-Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
+      ['<C-j>'] = function(fallback)
+        if cmp.visible() then
+          cmp.scroll_docs(4)
+        else
+          fallback()
+        end
+      end,
+      ['<C-k>'] = function(fallback)
+        if cmp.visible() then
+          cmp.scroll_docs(-4)
+        else
+          fallback()
+        end
+      end,
+      ['<C-Space>'] = cmp.mapping.complete(),
+  }
+  })

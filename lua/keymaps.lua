@@ -50,7 +50,7 @@ map_key('n', '<leader>b', ':bprev<cr>')
 
 -- GIT
 map_key('n', '<leader>gc', ':lua git_commit_all()<CR>')
-map_key('n', '<leader>ga', ':lua git_commit_push_all()<CR>')
+map_key('n', '<leader>gp', ':lua git_commit_push_all()<CR>')
 
 -- Java
 map_key('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
