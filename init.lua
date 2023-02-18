@@ -33,6 +33,8 @@ packer.startup(function(use)
   use 'airblade/vim-gitgutter' --show git modifications
   use 'preservim/nerdtree' -- file explorer
   use 'ThePrimeagen/vim-be-good' -- vim practice
+  use 'phaazon/hop.nvim' -- motions (find with 2 letters)
+  use 'iamcco/markdown-preview.nvim'
   use { -- CMP completion
     'hrsh7th/nvim-cmp',
     requires = {
@@ -84,7 +86,22 @@ configs.setup {
   indent = { enable = true }
 }
 
+-- markdown-preview
+vim.api.nvim_set_var('mkdp_auto_close', '0')
 
+-- Terminal
+require('toggleterm').setup()
+
+-- motions 
+require('hop').setup()
+
+
+
+-- CMP completion
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+local select_opts = {behavior = cmp.SelectBehavior.Select}
 -- LSP config
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -99,15 +116,6 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   -- vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
-
--- Terminal
-require('toggleterm').setup()
-
--- CMP completion
-local cmp = require('cmp')
-local luasnip = require('luasnip')
-
-local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
   snippet = {
@@ -163,3 +171,4 @@ cmp.setup({
       ['<C-Space>'] = cmp.mapping.complete(),
   }
   })
+
