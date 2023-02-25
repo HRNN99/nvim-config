@@ -35,7 +35,53 @@ local config = {
   -- for a list of options
   settings = {
     java = {
-    }
+      eclipse = {
+        downloadSources = true,
+      },
+      maven = {
+        downloadSources = true,
+      },
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+      },
+      references = {
+        includeDecompiledSources = true,
+      }
+    },
+    signatureHelp = { enabled = true},
+    completion = {
+      favoriteStaticMembers = {
+            "org.hamcrest.MatcherAssert.assertThat",
+            "org.hamcrest.Matchers.*",
+            "org.hamcrest.CoreMatchers.*",
+            "org.junit.jupiter.api.Assertions.*",
+            "java.util.Objects.requireNonNull",
+            "java.util.Objects.requireNonNullElse",
+            "org.mockito.Mockito.*",
+        },
+      importOrder = {
+            "java",
+            "javax",
+            "com",
+            "org"
+        },
+    },
+    extendedClientCapabilities = extendedClientCapabilities,
+    sources = {
+      organizeImports = {
+        starThreshold = 9999,
+        staticStarThreshold = 9999,
+        },
+    },
+    codeGeneration = {
+      toString = {
+        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+        },
+      useBlocks = true,
+    },
   }
 }
 config['on_attach'] = function(client, bufnr)

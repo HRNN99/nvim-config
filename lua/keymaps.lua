@@ -31,6 +31,7 @@ end
 -- shortcuts
 map_key('n', '<leader>q', '<Cmd>q<CR>')
 map_key('n', '<leader>w', '<Cmd>w<CR>')
+map_key('n', '<leader-kComma> ', '<S-a>;<CR>')
 
 -- nerdTREE
 map_key('n', '<C-p>', '<Cmd>NERDTreeToggle<CR>')
