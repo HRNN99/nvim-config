@@ -5,6 +5,7 @@
 -- imports
 require('keymaps')
 require('basic')
+require('mason-config')
 -- require("mason").setup()
 -- local nvim_lsp = require'lspconfig' 
 
@@ -46,9 +47,9 @@ packer.startup(function(use)
   }
 
     -- LSP java
-  -- use "williamboman/mason.nvim"
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
   use 'mfussenegger/nvim-jdtls'
   use 'ray-x/lsp_signature.nvim'
   use 'akinsho/toggleterm.nvim'
@@ -172,3 +173,13 @@ cmp.setup({
   }
   })
 
+-- lsp
+require('lspconfig')['jdtls'].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+require('lspconfig')['sqls'].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
