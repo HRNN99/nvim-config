@@ -40,9 +40,9 @@ vim.api.nvim_set_var('NERDTreeQuitOnOpen', 1)
 
 -- Telescope
 map_key('n', '<leader>p', ':lua require"telescope.builtin".find_files()<CR>')
-map_key('n', '<leader>fs', ':lua require"telescope.builtin".live_grep()<CR>')
-map_key('n', '<leader>fh', ':lua require"telescope.builtin".help_tags()<CR>')
-map_key('n', '<leader>fb', ':lua require"telescope.builtin".buffers()<CR>')
+map_key('n', '<S-f>s', ':lua require"telescope.builtin".live_grep()<CR>')
+map_key('n', '<S-f>h', ':lua require"telescope.builtin".help_tags()<CR>')
+map_key('n', '<S-f>b', ':lua require"telescope.builtin".buffers()<CR>')
 
 -- Buffers
 map_key('n', '<leader><esc>', ':nohlsearch<cr>')
@@ -57,7 +57,7 @@ map_key('n', '<C-g>p', ':lua git_commit_push_all()<CR>')
 map_key('n', '<leader>md', ':MarkdownPreviewToggle<CR>')
 
 -- Motion (hops)
-map_key('n', '<C-f>', ':HopChar2<CR>')
+map_key('n', '<leader>f', ':HopChar2<CR>')
 
 -- Java
 map_key('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
@@ -67,7 +67,7 @@ map_key('n', "<leader>ca", ':lua vim.lsp.buf.code_action()<CR>')
 map_key('n', "<leader>gd", ':lua vim.lsp.buf.definition()<CR>')
 map_key('n', "<leader>gi", ':lua vim.lsp.buf.implementation()<CR>')
 map_key('n', "<C-S>f", ':lua vim.lsp.buf.formatting()<CR>')
-map_key('n', "<C-S>r", ':lua vim.lsp.buf.rename()<CR>')
+map_key('n', "<leader>r", ':lua vim.lsp.buf.rename()<CR>')
 map_key('n', "<leader>cr", ':lua require"telescope.builtin".lsp_references()<CR>')
 local spring_boot_run = 'mvn spring-boot:run -Dspring-boot.run.profiles=local'
 local run= ':lua require("toggleterm").exec("' .. spring_boot_run .. '")<CR>'
