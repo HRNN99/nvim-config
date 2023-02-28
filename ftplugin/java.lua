@@ -54,12 +54,13 @@ local config = {
     signatureHelp = { enabled = true},
     completion = {
       favoriteStaticMembers = {
-            "org.hamcrest.MatcherAssert.assertThat",
+            "org.hamcrest.MatcherAssert.*",
             "org.hamcrest.Matchers.*",
             "org.hamcrest.CoreMatchers.*",
             "org.junit.jupiter.api.Assertions.*",
             "java.util.Objects.requireNonNull",
             "java.util.Objects.requireNonNullElse",
+            "org.mockito.Matchers.*",
             "org.mockito.Mockito.*",
         },
       importOrder = {
