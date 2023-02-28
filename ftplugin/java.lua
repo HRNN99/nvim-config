@@ -49,34 +49,35 @@ local config = {
       },
       references = {
         includeDecompiledSources = true,
-      }
-    },
-    signatureHelp = { enabled = true},
-    completion = {
-      favoriteStaticMembers = {
-            "org.hamcrest.MatcherAssert.*",
-            "org.hamcrest.Matchers.*",
-            "org.hamcrest.CoreMatchers.*",
-            "org.junit.jupiter.api.Assertions.*",
-            "java.util.Objects.requireNonNull",
-            "java.util.Objects.requireNonNullElse",
-            "org.mockito.Matchers.*",
-            "org.mockito.Mockito.*",
+      },
+      completion = {
+        favoriteStaticMembers = {
+              "org.hamcrest.MatcherAssert.*",
+              "org.hamcrest.Matchers.*",
+              "org.hamcrest.CoreMatchers.*",
+              "org.junit.jupiter.api.Assertions.*",
+              "java.util.Objects.requireNonNull",
+              "java.util.Objects.requireNonNullElse",
+              "org.mockito.Matchers.*",
+              "org.mockito.Mockito.*"
+          },
+        importOrder = {
+              "java",
+              "javax",
+              "com",
+              "org"
+          },
+        sources = {
+          organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
+          },
         },
-      importOrder = {
-            "java",
-            "javax",
-            "com",
-            "org"
-        },
+      },
+      signatureHelp = { enabled = true},
     },
     extendedClientCapabilities = extendedClientCapabilities,
-    sources = {
-      organizeImports = {
-        starThreshold = 9999,
-        staticStarThreshold = 9999,
-        },
-    },
+    
     codeGeneration = {
       toString = {
         template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
